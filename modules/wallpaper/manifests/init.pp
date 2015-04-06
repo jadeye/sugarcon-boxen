@@ -24,4 +24,11 @@ class wallpaper
       source  => 'puppet:///modules/wallpaper/desktop_screen_1920x1080.jpg',
       require => File["/Users/${::luser}/Documents/Wallpaper"];
   }
+
+  osx_wallpaper {
+    'desktop_screen_1920x1080.jpg':
+      ensure  => present,
+      path    => "/Users/${::luser}/Documents/Wallpaper/desktop_screen_1920x1080.jpg",
+      require => File["/Users/${::luser}/Documents/Wallpaper/desktop_screen_1920x1080.jpg"],
+  }
 }

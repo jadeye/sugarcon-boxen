@@ -57,6 +57,13 @@ node default {
   include git
   include hub
   #include nginx
+  include dockutil
+  include brewcask
+  include wallpaper
+  include osx::global::enable_dark_mode
+  include osx::global::disable_remote_control_ir_receiver
+  include osx::dock::autohide
+  include osx::safari::enable_developer_mode
 
   # fail if FDE is not enabled
   #if $::root_encrypted == 'no' {
@@ -79,7 +86,6 @@ node default {
     ]:
   }
 
-  include brewcask
 
   homebrew::tap { 'caskroom/versions': }
   homebrew::tap { 'homebrew/php': }
@@ -107,6 +113,7 @@ node default {
     [
       "firefox",
       "google-chrome",
+      "iterm2",
       "java",
       "sequel-pro",
       "sublime-text3",
@@ -147,5 +154,4 @@ node default {
     target => $boxen::config::repodir
   }
 
-  include wallpaper
 }

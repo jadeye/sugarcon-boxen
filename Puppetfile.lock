@@ -1,3 +1,10 @@
+GIT
+  remote: git://github.com/zsprackett/puppet-osx.git
+  ref: master
+  sha: 4df85656f76501558248c92bd6ba623a41b64f8e
+  specs:
+    puppet-osx (0.0.1)
+
 GITHUBTARBALL
   remote: boxen/puppet-boxen
   specs:
@@ -12,6 +19,11 @@ GITHUBTARBALL
   remote: boxen/puppet-dnsmasq
   specs:
     dnsmasq (2.0.1)
+
+GITHUBTARBALL
+  remote: boxen/puppet-dockutil
+  specs:
+    dockutil (0.2.1)
 
 GITHUBTARBALL
   remote: boxen/puppet-foreman
@@ -108,6 +120,7 @@ DEPENDENCIES
   brewcask (= 0.0.6)
   brewcask (= 0.0.6)
   dnsmasq (= 2.0.1)
+  dockutil (= 0.2.1)
   foreman (= 1.2.0)
   gcc (= 2.2.0)
   git (= 2.7.5)
@@ -121,6 +134,7 @@ DEPENDENCIES
   openssl (= 1.0.0)
   phantomjs (= 2.3.0)
   pkgconfig (= 1.0.0)
+  puppet-osx (>= 0)
   repository (= 2.3.0)
   ruby (= 8.1.7)
   stdlib (= 4.2.1)
