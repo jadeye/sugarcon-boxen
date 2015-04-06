@@ -123,8 +123,10 @@ node default {
 
   package {
     [
+      'dockutil',
       'memcached',
       'percona-server',
+      'pstree',
     ]:
       provider => 'homebrew',
   }
@@ -134,6 +136,7 @@ node default {
       'composer',
       'php54',
       'php54-opcache',
+      'php54-jsmin',
       'php54-memcached',
       'php54-mysqlnd_ms',
     ]:
@@ -145,6 +148,39 @@ node default {
     'elasticsearch14':
       provider => 'homebrew',
       require  => [ Package['java'] ]
+  }
+
+  dockutil::item {
+    'google-chrome':
+      item     => "/Users/${::luser}/Applications/Google Chrome.app",
+      label    => 'Google Chrome',
+      action   => 'add',
+      position => 2,
+      require  => [ Package['google-chrome'], Package['dockutil'] ];
+    'firefox':
+      item     => "/Users/${::luser}/Applications/Firefox.app",
+      label    => 'Firefox',
+      action   => 'add',
+      position => 3,
+      require  => [ Package['firefox'], Package['dockutil'] ];
+    'iterm2':
+      item     => "/Users/${::luser}/Applications/iTerm.app",
+      label    => 'iTerm',
+      action   => 'add',
+      position => 4,
+      require  => [ Package['iterm2'], Package['dockutil'] ];
+    'sequel-pro':
+      item     => "/Users/${::luser}/Applications/Sequel Pro.app",
+      label    => 'Sequel Pro',
+      action   => 'add',
+      position => 5,
+      require  => [ Package['sequel-pro'], Package['dockutil'] ];
+    'sublime-text3':
+      item     => "/Users/${::luser}/Applications/Sublime Text.app",
+      label    => 'Sublime Text',
+      action   => 'add',
+      position => 6,
+      require  => [ Package['sublime-text3'], Package['dockutil'] ];
   }
 
   file { "${boxen::config::srcdir}/our-boxen":
