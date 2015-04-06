@@ -79,8 +79,73 @@ node default {
     ]:
   }
 
+  include brewcask
+
+  homebrew::tap { 'caskroom/versions': }
+  homebrew::tap { 'homebrew/php': }
+
+  # some casks put symlinks in /usr/local/bin unfortunately
+  ensure_resource(
+    'file', '/usr/local', {
+      ensure => 'directory',
+      owner  => "${::luser}",
+      group  => 'admin',
+      mode   => '4775'
+     }
+  )
+  ensure_resource(
+    'file', '/usr/local/bin', {
+      ensure => 'directory',
+      owner  => "${::luser}",
+      group  => 'admin',
+      mode   => '4775',
+      require => File['/usr/local']
+     }
+  )
+
+ package {
+    [
+      "firefox",
+      "google-chrome",
+      "java",
+      "sequel-pro",
+      "sublime-text3",
+    ]:
+      provider => 'brewcask',
+      require  => [ File['/usr/local/bin'], Homebrew::Tap['caskroom/versions'] ];
+  }
+  #mkdir /opt/boxen/homebrew/Cellar/percona-server/5.6.23-72.1/libexec
+
+  package {
+    [
+      'composer',
+      'memcached',
+      'percona-server',
+    ]:
+      provider => 'homebrew',
+  }
+
+  package {
+    [
+      'php54',
+      'php54-opcache',
+      'php54-memcached',
+      'php54-mysqlnd_ms',
+    ]:
+      provider => 'homebrew',
+      require  => Homebrew::Tap['homebrew/php']
+  }
+
+  package {
+    'elasticsearch14':
+      provider => 'homebrew',
+      require  => [ Package['java'] ]
+  }
+
   file { "${boxen::config::srcdir}/our-boxen":
     ensure => link,
     target => $boxen::config::repodir
   }
+
+  include wallpaper
 }
