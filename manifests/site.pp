@@ -53,7 +53,10 @@ Homebrew::Formula <| |> -> Package <| |>
 
 node default {
   # core modules, needed for most things
-  include dnsmasq
+  class {
+    'dnsmasq':
+      tld => 'sugarcon.dev'
+  }
   include git
   include hub
   #include nginx
@@ -64,11 +67,6 @@ node default {
   include osx::global::disable_remote_control_ir_receiver
   include osx::dock::autohide
   include osx::safari::enable_developer_mode
-
-  # fail if FDE is not enabled
-  #if $::root_encrypted == 'no' {
-  #  fail('Please enable full disk encryption and try again')
-  #}
 
   # default ruby versions
   #ruby::version { '1.9.3': }
@@ -125,7 +123,6 @@ node default {
 
   package {
     [
-      'composer',
       'memcached',
       'percona-server',
     ]:
@@ -134,6 +131,7 @@ node default {
 
   package {
     [
+      'composer',
       'php54',
       'php54-opcache',
       'php54-memcached',
