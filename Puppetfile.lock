@@ -1,7 +1,7 @@
 GIT
   remote: git://github.com/zsprackett/puppet-osx.git
   ref: master
-  sha: 4df85656f76501558248c92bd6ba623a41b64f8e
+  sha: 0dee8e75a114a9229227ca741877e8b3ba7968a3
   specs:
     puppet-osx (0.0.1)
 
