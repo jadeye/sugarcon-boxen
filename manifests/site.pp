@@ -123,8 +123,10 @@ node default {
 
   package {
     [
+      'coreutils',
       'dockutil',
       'memcached',
+      'memcache-top',
       'percona-server',
       'pstree',
     ]:
